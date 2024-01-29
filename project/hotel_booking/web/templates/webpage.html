@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotel Booking</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  width: 50%;
+  margin: 100px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label,
+input,
+select {
+  margin-bottom: 10px;
+}
+
+input[type="date"],
+input[type="number"],
+select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+</style>
+<body>
+  <div class="container">
+    <form action="{% url 'book_now' %}" method="POST">
+      {% csrf_token %}
+      <h2>Hotel Booking</h2>
+      <label for="checkInDate">Check-In Date:</label>
+      <input type="date" id="checkInDate" name="checkInDate" required><br><br>
+
+      <label for="checkOutDate">Check-Out Date:</label>
+      <input type="date" id="checkOutDate" name="checkOutDate" required><br><br>
+
+      <label for="roomType">Room Type:</label>
+      <select id="roomType" name="roomType" required>
+        <option value="single">Single</option>
+        <option value="double">Double</option>
+        <option value="suite">Suite</option>
+      </select><br><br>
+
+      <label for="numOfGuests">Number of Guests:</label>
+      <input type="number" id="numOfGuests" name="numOfGuests" min="1" required><br><br>
+
+      <input type="submit" value="Book Now">
+
+      <div class="logout-container">
+        <a href="{% url 'logout' %}" style="font-family:'Times New Roman', Times, serif;font-size:20px;padding: 5px;" id="logout-button" class="btn btn-dark">Logout</a>
+          </div>
+    </form>
+  </div>
+</body>
+</html>
+
